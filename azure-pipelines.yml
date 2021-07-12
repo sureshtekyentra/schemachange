@@ -5,20 +5,14 @@
 
 trigger:
 - master
-
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: |
-     pip install wheel
-- script: |
-     pip install twine
-- script: |
-     python setup.py bdist_wheel
+- script: pip install wheel
+- script: pip install twine
+- script: python setup.py bdist_wheel
 - task: TwineAuthenticate@1
-  displayName: 'Twine Authenticate'
-  inputs:
-    artifactFeed: CDT%20Dashboard%20Efforts/snowFlakePublishPackage
-- script: |
-     python -m twine upload -r feedName --config-file $(PYPIRC_PATH) dist/*.whl
+  inputs:
+    artifactFeed: 'snowFlakePublishPackage'
+- script: python -m twine upload -r snowFlakePublishPackage --config-file $(PYPIRC_PATH) dist/*.whl
