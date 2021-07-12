@@ -13,14 +13,11 @@ steps:
 - script: |
      pip install wheel
      pip install twine
-
 - script: |
      python setup.py bdist_wheel
-   
 - task: TwineAuthenticate@1
   displayName: 'Twine Authenticate'
   inputs:
     artifactFeed: CDT%20Dashboard%20Efforts/snowFlakePublishPackage
-  
 - script: |
      python -m twine upload -r feedName --config-file $(PYPIRC_PATH) dist/*.whl
