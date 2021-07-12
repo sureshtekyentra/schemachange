@@ -9,10 +9,11 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+steps:
 - script: |
      pip install wheel
      pip install twine
-  
+
 - script: |
      python setup.py bdist_wheel
    
